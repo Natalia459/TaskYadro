@@ -1,0 +1,26 @@
+cmake_minimum_required(VERSION 3.11)
+
+project(ComputerClub CXX)
+set(CMAKE_CXX_STANDARD 17)
+
+# добавляем цель hello для сборки исполняемого файла
+# hello.exe под Windows, hello под Linux и macOS
+
+set(PARSER_FILES parser.h parser.cpp)
+set(EVENT_MANAGER_FILES event_manager.h event_manager.cpp)
+set(OBJECTS_FILES event_manager.h event_manager.cpp)
+
+if(CMAKE_SYSTEM_NAME MATCHES "^MINGW")
+    set(SYSTEM_LIBS -lstdc++)
+else()
+    set(SYSTEM_LIBS)
+endif()
+
+add_executable(computer_club 
+	main.cpp
+	${OBJECTS_FILE}
+	${PARSER_FILES}
+	${EVENT_MANAGER_FILES}
+)
+
+target_link_libraries(computer_club ${SYSTEM_LIBS})
